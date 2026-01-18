@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.get('/api/health', (req, res) => {
     message: 'Legal Suite API running'
   });
 });
+
+app.use('/api/auth', authRoutes);
 
 export default app;
