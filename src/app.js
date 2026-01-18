@@ -6,6 +6,8 @@ import { errorHandler } from './middlewares/error.middleware.js';
 import { setupSwagger } from './config/swagger.js';
 import {requestLogger} from './middlewares/requestLogger.middleware.js';
 import lawyerRoutes from './routes/lawyer.routes.js';
+import legalCaseRoutes from './routes/legalCase.routes.js';
+import reportRoutes from './routes/report.routes.js';
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/lawyers', lawyerRoutes);
+app.use('/api/legal-cases', legalCaseRoutes);
+//app.use('/api/reports', reportRoutes);
 
 app.use(errorHandler);
 
