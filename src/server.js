@@ -8,10 +8,10 @@ const startServer = async () => {
 }
 
 
-
+if (process.env.NODE_ENV !== 'test') {
 app.listen(PORT, () => {
   console.log(` Servidor ejecutandose en el puerto ${PORT}`);
 });
-
+}
 
 startServer();
