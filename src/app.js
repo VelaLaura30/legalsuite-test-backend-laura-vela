@@ -28,7 +28,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/lawyers', lawyerRoutes);
 app.use('/api/legal-cases', legalCaseRoutes);
-//app.use('/api/reports', reportRoutes);
+app.use('/api/reports', reportRoutes);
 
 app.use(errorHandler);
 
