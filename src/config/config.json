@@ -1,0 +1,12 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "legal-suite-db",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {},
+  "production": {}
+}
