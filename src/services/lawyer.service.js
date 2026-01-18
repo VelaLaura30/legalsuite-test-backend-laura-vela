@@ -2,7 +2,7 @@ import { Lawyer, LegalCase } from '../models/index.js';
 import { Op } from 'sequelize';
 
 export const createLawyerService = async (data) => {
-  // Verificar email único
+
   const exists = await Lawyer.findOne({ where: { email: data.email } });
   if (exists) throw new Error('El email ya está registrado');
 
