@@ -16,7 +16,6 @@ export const loginSchema = Joi.object({
         })
     ,
     password: Joi.string()
-        .trim()
         .min(6)
         .max(50)
         .required()
@@ -26,5 +25,8 @@ export const loginSchema = Joi.object({
             'string.max': 'La contraseña no puede superar los 50 caracteres',
             'any.required': 'La contraseña es obligatoria'
         })
-    ,
+
+    }).options({
+    stripUnknown: true, 
+    abortEarly: false 
 });

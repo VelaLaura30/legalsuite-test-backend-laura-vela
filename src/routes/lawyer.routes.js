@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import {createLawyer, getLawyers, getLawyerById} from '../controllers/lawyer.controller.js';
-import { validateBody } from '../middlewares/validate.middleware.js';
+import { validateBody, validateParams, validateQuery } from '../middlewares/validate.middleware.js';
 import { verifyToken } from '../middlewares/auth.middleware.js';
-import { lawyerSchema } from '../validations/lawyer.schema.js';
+import { createLawyerSchema, listLawyersSchema, lawyerIdSchema } from '../validations/lawyer.schema.js';
 
 const router = Router();
 
@@ -56,7 +56,7 @@ const router = Router();
  *         description: Token no proporcionado o inválido
  */
 
-router.post('/', verifyToken, validateBody(lawyerSchema), createLawyer);
+router.post('/', verifyToken, validateBody(createLawyerSchema), createLawyer);
 
 /**
  * @swagger
@@ -88,7 +88,7 @@ router.post('/', verifyToken, validateBody(lawyerSchema), createLawyer);
  *       401:
  *         description: Token inválido o no proporcionado
  */
-router.get('/', verifyToken, getLawyers);
+router.get('/', verifyToken, validateQuery(listLawyersSchema) , getLawyers);
 
 /**
  * @swagger
@@ -113,6 +113,6 @@ router.get('/', verifyToken, getLawyers);
  *       401:
  *         description: Token inválido o no proporcionado
  */
-router.get('/:id', verifyToken, getLawyerById);
+router.get('/:id', verifyToken, validateParams(lawyerIdSchema), getLawyerById);
 
 export default router;

@@ -6,9 +6,9 @@ import {
   assignLegalCase,
   transferLegalCase
 } from '../controllers/legalCase.controller.js';
-import { validateBody } from '../middlewares/validate.middleware.js';
+import { validateBody, validateParams, validateQuery } from '../middlewares/validate.middleware.js';
 import { verifyToken } from '../middlewares/auth.middleware.js';
-import { legalCaseSchema, assignCaseSchema, transferCaseSchema } from '../validations/legalCase.schema.js';
+import { createLegalCaseSchema, listLegalCasesSchema, legalCaseIdSchema, assignCaseSchema, transferCaseSchema } from '../validations/legalCase.schema.js';
 
 const router = Router();
 
@@ -93,9 +93,9 @@ const router = Router();
  *                     total:
  *                       type: integer
  */
-router.post('/', verifyToken, validateBody(legalCaseSchema), createLegalCase);
+router.post('/', verifyToken, validateBody(createLegalCaseSchema), createLegalCase);
 
-router.get('/', verifyToken, getLegalCases);
+router.get('/', verifyToken, validateQuery(listLegalCasesSchema), getLegalCases);
 
 /**
  * @swagger
@@ -122,7 +122,7 @@ router.get('/', verifyToken, getLegalCases);
  *       404:
  *         description: Caso no encontrado
  */
-router.get('/:id', verifyToken, getLegalCaseById);
+router.get('/:id', verifyToken, validateParams(legalCaseIdSchema), getLegalCaseById);
 
 /**
  * @swagger
@@ -153,7 +153,7 @@ router.get('/:id', verifyToken, getLegalCaseById);
  *       404:
  *         description: Caso o abogado no encontrado
  */
-router.put('/:id/assign', verifyToken, validateBody(assignCaseSchema), assignLegalCase);
+router.put('/:id/assign', verifyToken, validateParams(legalCaseIdSchema), validateBody(assignCaseSchema), assignLegalCase);
 
 /**
  * @swagger
@@ -184,7 +184,7 @@ router.put('/:id/assign', verifyToken, validateBody(assignCaseSchema), assignLeg
  *       404:
  *         description: Caso o abogado no encontrado
  */
-router.put('/:id/transfer', verifyToken, validateBody(transferCaseSchema), transferLegalCase);
+router.put('/:id/transfer', verifyToken, validateParams(legalCaseIdSchema),validateBody(transferCaseSchema), transferLegalCase);
 
 /**
  * @swagger
