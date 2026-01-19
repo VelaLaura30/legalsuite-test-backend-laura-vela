@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { getLawyerCasesReport } from '../controllers/report.controller.js';
 import { verifyToken } from '../middlewares/auth.middleware.js';
+import { validateParams } from '../middlewares/validate.middleware.js';
+import { lawyerReportParamsSchema } from '../validations/report.schema.js';
 
 const router = Router();
 
@@ -77,6 +79,6 @@ const router = Router();
  *         description: Abogado no encontrado
  */
 
-router.get('/lawyers/:id/cases', verifyToken, getLawyerCasesReport);
+router.get('/lawyers/:id/cases', verifyToken, validateParams(lawyerReportParamsSchema), getLawyerCasesReport);
 
 export default router;
