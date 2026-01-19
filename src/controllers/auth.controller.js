@@ -23,7 +23,6 @@ export const loginUser = async (req, res, next) => {
         const token = authService.generateToken(user);
 
         logger.info('Usuario logueado correctamente', {
-            id: user.id,
             username: user.username,
             role: user.role
         });
