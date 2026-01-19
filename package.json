@@ -9,6 +9,12 @@
     "test:db:setup": "npx sequelize-cli db:seed:undo:all --env test && npx sequelize-cli db:migrate --env test && npx sequelize-cli db:seed:all --env test",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
     "test:watch": "cross-env NODE_ENV=test jest --watch"
+    "start": "node src/server.js",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:migrate:undo": "sequelize-cli db:migrate:undo",
+    "db:seed": "sequelize-cli db:seed:all",
+    "db:seed:undo": "sequelize-cli db:seed:undo:all",
+    "db:reset": "sequelize-cli db:migrate:undo:all && sequelize-cli db:migrate && sequelize-cli db:seed:all",
   },
   "repository": {
     "type": "git",
