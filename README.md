@@ -20,7 +20,8 @@ Verificar versiones:
 
 1. Clonar el repositorio
 
-git clone https://github.com/tu-usuario/legalsuite-test-backend.git
+git clone https://github.com/tu-usuario/legalsuite-test-backend.git 
+
 cd legalsuite-test-backend
 
 2. Instalar dependencias
